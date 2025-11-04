@@ -11,19 +11,10 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/userProfile">User Profile</Link>
-            </li>
-            <Link to="/login">Login</Link>
-          </ul>
-        </nav>
         <img src="https://picsum.photos/200/200" alt="bank" />
 
         <h1>Bank of React</h1>
-
-
+        
         <br />
         <Link to="/credits">Credits</Link>
         <br />
