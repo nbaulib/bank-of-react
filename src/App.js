@@ -37,11 +37,13 @@ class App extends Component {
 
 
     // Await for promise (completion) returned from API call
-    try {  // Accept success response as array of JSON objects (users)
+    try {
       let creditResponse = await axios.get(creditURL);
       console.log(creditResponse);
+
       // To get data object in the response, need to use "response.data"
       this.setState({ creditList: creditResponse.data });  // Store received data in state's "creditList" object
+
     }
     catch (error) {  // Print out errors at console when there is an error response
       if (error.response) {
@@ -81,7 +83,11 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
     )
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
-    const CreditsComponent = () => (<Credits credits={this.state.creditList} />)
+    const CreditsComponent = () => (
+      <Credits
+        credits={this.state.creditList}
+        addCredit={this.addCredit}
+      />)
     const DebitsComponent = () => (<Debits debits={this.state.debitList} />)
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
