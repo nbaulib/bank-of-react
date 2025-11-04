@@ -4,7 +4,7 @@ src/components/Credits.js
 Contains information for Credits page view.
 ==================================================*/
 
-/*===
+
 import { Component } from "react";
 import { Link } from 'react-router-dom';
 
@@ -82,10 +82,10 @@ class Credits extends Component {
   }
 }
 export default Credits;
-===*/
+
 
 // debits verison
-
+/*
 import { Link } from "react-router-dom";
 
 const Credits = (props) => {
@@ -122,3 +122,4 @@ const Credits = (props) => {
 };
 
 export default Credits;
+*/
