@@ -4,7 +4,6 @@ src/components/Credits.js
 Contains information for Credits page view.
 ==================================================*/
 
-
 import { Component } from "react";
 import { Link } from 'react-router-dom';
 
@@ -38,7 +37,7 @@ class Credits extends Component {
     }
   }
 
-  render() {  // Conditional rendering
+  render() {
     const { credits, accountBalance } = this.props;
 
     return (
@@ -66,7 +65,7 @@ class Credits extends Component {
         <h2>Credit History</h2>
 
         <ul>
-          {this.props.credits.map((credit, index) => (
+          {credits.map((credit, index) => (
             <li key={index}>
               <strong>{credit.description}</strong> — $
               {credit.amount.toFixed(2)} on {credit.date.slice(0, 10)}
