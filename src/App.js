@@ -6,6 +6,7 @@ It contains the top-level state.
 ==================================================*/
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import './App.css';
 
 // for api
 import axios from 'axios';
@@ -116,7 +117,7 @@ class App extends Component {
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
       <Router basename="/bank-of-react-starter-code">
-        <div>
+        <div className="App">
           <Route exact path="/" render={HomeComponent} />
           <Route exact path="/userProfile" render={UserProfileComponent} />
           <Route exact path="/login" render={LogInComponent} />
