@@ -1,14 +1,13 @@
 /*==================================================
 src/components/Credits.js
 
-The Credits component contains information for Credits page view.
-Note: You need to work on this file for the Assignment.
+Contains information for Credits page view.
 ==================================================*/
+
 import { Component } from "react";
 import { Link } from 'react-router-dom';
 
-// based of form component example
-
+// based off form component example
 class Credits extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +17,6 @@ class Credits extends Component {
       showForm: false
     };
   }
-
 
   updateDesc = (event) => {
     this.setState({ descInput: event.target.value });
