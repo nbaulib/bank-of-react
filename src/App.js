@@ -33,16 +33,19 @@ class App extends Component {
 
   // from ApiDataComponent example
   async componentDidMount() {
-    let creditURL = 'https://johnnylaicode.github.io/api/credits.json';  // Link to remote website API endpoint
+    let creditURL = 'https://johnnylaicode.github.io/api/credits.json';
+    let debitURL = 'https://johnnylaicode.github.io/api/debits.json';
 
 
     // Await for promise (completion) returned from API call
     try {
       let creditResponse = await axios.get(creditURL);
       console.log(creditResponse);
+      let debitResponse = await axios.get(debitURL);
 
       // To get data object in the response, need to use "response.data"
       this.setState({ creditList: creditResponse.data });  // Store received data in state's "creditList" object
+      this.setState({ debitList: debitResponse.data }); 
 
     }
     catch (error) {  // Print out errors at console when there is an error response
@@ -75,6 +78,20 @@ class App extends Component {
     });
   }
 
+    addDebit = (desc, amount) => {
+    const newDebit = {
+      description: desc,
+      amount: parseFloat(amount),
+      date: new Date().toISOString(),
+    };
+    const updatedDebits = [...this.state.debitList, newDebit];
+    const newBalance = this.state.accountBalance - newDebit.amount;
+    this.setState({
+      debitList: updatedDebits,
+      accountBalance: newBalance,
+    });
+  }
+
   // Create Routes and React elements to be rendered using React components
   render() {
     // Create React elements and pass input props to components
@@ -88,7 +105,11 @@ class App extends Component {
         credits={this.state.creditList}
         addCredit={this.addCredit}
       />)
-    const DebitsComponent = () => (<Debits debits={this.state.debitList} />)
+    const DebitsComponent = () => (
+    <Debits 
+      debits={this.state.debitList} 
+      addDebit={this.addDebit}
+    />)
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
