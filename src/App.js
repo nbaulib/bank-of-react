@@ -33,21 +33,21 @@ class App extends Component {
 
   // from ApiDataComponent example
   async componentDidMount() {
-    let credit = 'https://johnnylaicode.github.io/api/credits.json';  // Link to remote website API endpoint
+    let creditURL = 'https://johnnylaicode.github.io/api/credits.json';  // Link to remote website API endpoint
 
 
     // Await for promise (completion) returned from API call
     try {  // Accept success response as array of JSON objects (users)
-      let creditResponse = await axios.get(credit);
-      console.log(creditResponse);  // Print out response
+      let creditResponse = await axios.get(creditURL);
+      console.log(creditResponse);
       // To get data object in the response, need to use "response.data"
-      this.setState({ users: creditResponse.data });  // Store received data in state's "users" object
+      this.setState({ creditList: creditResponse.data });  // Store received data in state's "creditList" object
     }
     catch (error) {  // Print out errors at console when there is an error response
-      if (error.creditResponse) {
+      if (error.response) {
         // The request was made, and the server responded with error message and status code.
-        console.log(error.creditResponse.data);  // Print out error message (e.g., Not Found)
-        console.log(error.creditResponse.status);  // Print out error status code (e.g., 404)
+        console.log(error.response.data);  // Print out error message (e.g., Not Found)
+        console.log(error.response.status);  // Print out error status code (e.g., 404)
       }
     }
   }
