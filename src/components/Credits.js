@@ -81,7 +81,6 @@ class Credits extends Component {
 
   }
 }
-
 export default Credits;
 ===*/
 
@@ -123,5 +122,3 @@ const Credits = (props) => {
 };
 
 export default Credits;
-
-
