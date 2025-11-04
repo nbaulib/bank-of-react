@@ -19,15 +19,15 @@ class Credits extends Component {
     };
   }
 
-  updateDesc = (event) => {
+  handleDesc = (event) => {
     this.setState({ descInput: event.target.value });
   };
 
-  updateAmount = (event) => {
+  handleAmount = (event) => {
     this.setState({ amountInput: event.target.value });
   };
 
-  sumbit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const { descInput, amountInput } = this.state;
 
@@ -46,19 +46,19 @@ class Credits extends Component {
         <h1>Credits</h1>
         <h3>Account Balance: ${Number(accountBalance).toFixed(2)}</h3>
 
-        <form onSubmit={this.submit}>
+        <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             placeholder="Description"
             value={this.state.descInput}
-            onChange={this.updateDesc}
+            onChange={this.handleDesc}
           />
           <input
             type="number"
             step="0.01"
             placeholder="Amount"
             value={this.state.amountInput}
-            onChange={this.updateAmount}
+            onChange={this.handleAmount}
           />
           <button type="submit">Add Credit</button>
         </form>
