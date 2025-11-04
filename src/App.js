@@ -59,6 +59,20 @@ class App extends Component {
     this.setState({ currentUser: newUser })
   }
 
+  addCredit = (desc, amount) => {
+    const newCredit = {
+      description: desc,
+      amount: parseFloat(amount),
+      date: new Date().toISOString(),
+    };
+    const updatedCredits = [...this.state.creditList, newCredit];
+    const newBalance = this.state.accountBalance + newCredit.amount;
+    this.setState({
+      creditList: updatedCredits,
+      accountBalance: newBalance,
+    });
+  }
+
   // Create Routes and React elements to be rendered using React components
   render() {
     // Create React elements and pass input props to components
