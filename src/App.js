@@ -40,11 +40,10 @@ class App extends Component {
     // Await for promise (completion) returned from API call
     try {
       let creditResponse = await axios.get(creditURL);
-      console.log(creditResponse);
       let debitResponse = await axios.get(debitURL);
 
       // To get data object in the response, need to use "response.data"
-      this.setState({ creditList: creditResponse.data });  // Store received data in state's "creditList" object
+      this.setState({ creditList: creditResponse.data });
       this.setState({ debitList: debitResponse.data }); 
 
     }
@@ -104,11 +103,13 @@ class App extends Component {
       <Credits
         credits={this.state.creditList}
         addCredit={this.addCredit}
+        accountBalance={this.state.accountBalance}
       />)
     const DebitsComponent = () => (
     <Debits 
       debits={this.state.debitList} 
       addDebit={this.addDebit}
+      accountBalance={this.state.accountBalance}
     />)
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
