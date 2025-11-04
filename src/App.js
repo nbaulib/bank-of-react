@@ -41,12 +41,22 @@ class App extends Component {
     // Await for promise (completion) returned from API call
     try {
       let creditResponse = await axios.get(creditURL);
-      console.log(creditResponse);
       let debitResponse = await axios.get(debitURL);
 
-      // To get data object in the response, need to use "response.data"
-      this.setState({ creditList: creditResponse.data });  // Store received data in state's "creditList" object
-      this.setState({ debitList: debitResponse.data }); 
+      const credits = creditResponse.data;
+      const debits = debitResponse.data;
+
+      // calc balance from API data
+      const totalCredits = credits.reduce((sum, c) => sum + c.amount, 0);
+      const totalDebits = debits.reduce((sum, d) => sum + d.amount, 0);
+      const newBalance = totalCredits - totalDebits;
+
+      // update states
+      this.setState({
+        creditList: creditResponse.data,
+        debitList: debitResponse.data,
+        accountBalance: newBalance,
+      });
 
     }
     catch (error) {  // Print out errors at console when there is an error response
@@ -79,7 +89,7 @@ class App extends Component {
     });
   }
 
-    addDebit = (desc, amount) => {
+  addDebit = (desc, amount) => {
     const newDebit = {
       description: desc,
       amount: parseFloat(amount),
@@ -108,11 +118,11 @@ class App extends Component {
         accountBalance={this.state.accountBalance}
       />)
     const DebitsComponent = () => (
-    <Debits 
-      debits={this.state.debitList} 
-      addDebit={this.addDebit}
-      accountBalance={this.state.accountBalance}
-    />)
+      <Debits
+        debits={this.state.debitList}
+        addDebit={this.addDebit}
+        accountBalance={this.state.accountBalance}
+      />)
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
